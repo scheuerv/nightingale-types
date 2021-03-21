@@ -1,20 +1,108 @@
+declare module 'protvista-manager' {
+    export default class ProtvistaManager extends HTMLElement {
+     }
+ }
+ declare module 'protvista-sequence' {
+    import ProtvistaZoomable from "protvista-zoomable";
+    export default class ProtvistaSequence extends ProtvistaZoomable {
+    }
+}
+declare module 'protvista-zoomable' {
+    export default class ProtvistaZoomable extends HTMLElement {
+        constructor();
+        _height: number;
+    }
+}
+declare module 'protvista-variation' {
+    import ProtvistaTrack from "protvista-track";
+    export default class ProtvistaVariation extends ProtvistaTrack {
+        set colorConfig(colorConfig: any);
+        static get css(): string;
+    }
+}
+declare module 'protvista-variation-graph' {
+    import ProtvistaTrack from "protvista-track";
+    export default class ProtvistaVariationGraph extends ProtvistaTrack {
+        _totalsArray: { total: Uint8ClampedArray, diseaseTotal: Uint8ClampedArray }
+        _applyFilters(): void;
+    }
+}
 
-export as namespace nightingale;
 
+declare module 'protvista-track' {
+    import ProtvistaZoomable from "protvista-zoomable";
+    import DefaultLayout from "protvista-track/src/DefaultLayout";
+    import NonOverlappingLayout from "protvista-track/src/NonOverlappingLayout";
+   export default class ProtvistaTrack extends ProtvistaZoomable {
+        _originalData:  any;
+        _data:  any;
+        set data(data:  any);
+        getLayout(): DefaultLayout | NonOverlappingLayout;
+        toggleFilter(name: string): void;
+        _createTrack(): void
+    }
+}
 
-
-
-export * from 'protvista-feature-adapter/src/evidences';
-export * from 'protvista-filter';
-export * from 'protvista-manager';
-export * from 'protvista-navigation';
-export * from 'protvista-sequence';
-export * from 'protvista-tooltip';
-export * from 'protvista-zoomable';
-export * from 'protvista-tooltip';
-export * from 'protvista-track';
-export * from 'protvista-variation';
-export * from 'protvista-variation-graph';
-export * from 'protvista-track/src/NonOverlappingLayout';
-export * from 'protvista-track/src/DefaultLayout';
-export * from 'protvista-track/src/config';
+declare module 'protvista-track/src/config' {
+    const config: Record<string, {
+        name: string;
+        label: string;
+        tooltip: string;
+        shape: string;
+        color: string;
+    }>;
+}
+declare module 'protvista-track/src/DefaultLayout' {
+   export default class DefaultLayout {
+        _padding: number;
+        _minHeight: number;
+        _layoutHeight: number;
+        constructor(options: { layoutHeight: number, padding?: number, minHeight?: number });
+        init(features: any): void;
+        getFeatureYPos(): number;
+        getFeatureHeight(): number;
+    }
+}
+declare module 'protvista-track/src/NonOverlappingLayout' {
+    import DefaultLayout from "protvista-track/src/DefaultLayout";
+    export default class NonOverlappingLayout extends DefaultLayout {
+        _padding: number;
+        _minHeight: number;
+        _layoutHeight: number;
+        featuresMap: Map<any, number>;
+        _rowHeight: number;
+        _rows: any[];
+        getOffset(): number;
+    }
+}
+declare module 'protvista-tooltip' {
+    import { LitElement } from "lit-element";
+   export default class ProtvistaTooltip extends LitElement {
+    }
+}
+declare module 'protvista-navigation' {
+    export default class ProtvistaNavigation extends HTMLElement {
+    }
+}
+declare module 'protvista-filter' {
+    import { LitElement, CSSResultOrNative, CSSResultArray } from "lit-element";
+    import {TemplateResult} from "lit-html";
+       export default class ProtvistaFilter extends LitElement {
+        selectedFilters: Set<string>;
+        filters: any[];
+        constructor();
+        toggleFilter(name: string): void;
+        getCheckBox(filterItem:any):TemplateResult;
+        static get styles(): CSSResultOrNative | CSSResultArray;
+    }
+}
+declare module 'protvista-feature-adapter/src/evidences' {
+    export const ecoMap: {
+        name: string;
+        description: string;
+        shortDescription: string;
+        acronym: string;
+        isManual?: boolean;
+    }[]
+    export default ecoMap;
+}
