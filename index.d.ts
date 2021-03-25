@@ -82,8 +82,8 @@ declare module 'protvista-tooltip' {
 }
 declare module 'protvista-navigation' {
     export default class ProtvistaNavigation extends HTMLElement {
-        _displaystart:number;
-        _displayend:number;
+        _displaystart:string;
+        _displayend:string;
     }
 }
 declare module 'protvista-filter' {
