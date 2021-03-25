@@ -84,6 +84,8 @@ declare module 'protvista-navigation' {
     export default class ProtvistaNavigation extends HTMLElement {
         _displaystart:string;
         _displayend:string;
+        _padding:number;
+        get width():number;
     }
 }
 declare module 'protvista-filter' {
