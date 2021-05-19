@@ -1,5 +1,7 @@
 declare module 'protvista-manager' {
     export default class ProtvistaManager extends HTMLElement {
+        set highlight(highlight: string);
+        applyAttributes(): void;
     }
 }
 declare module 'protvista-sequence' {
@@ -11,7 +13,8 @@ declare module 'protvista-zoomable' {
     import { ZoomBehavior } from "d3";
     export default class ProtvistaZoomable extends HTMLElement {
         constructor();
-        _height: number;
+        set height(height: number);
+        get height(): number;
         get zoom(): ZoomBehavior<Element, any>
     }
 }
@@ -58,8 +61,6 @@ declare module 'protvista-track/src/config' {
 declare module 'protvista-track/src/DefaultLayout' {
     export default class DefaultLayout {
         _padding: number;
-        _minHeight: number;
-        _layoutHeight: number;
         constructor(options: { layoutHeight: number, padding?: number, minHeight?: number });
         init(features: any): void;
         getFeatureYPos(): number;
@@ -69,12 +70,8 @@ declare module 'protvista-track/src/DefaultLayout' {
 declare module 'protvista-track/src/NonOverlappingLayout' {
     import DefaultLayout from "protvista-track/src/DefaultLayout";
     export default class NonOverlappingLayout extends DefaultLayout {
-        _padding: number;
-        _minHeight: number;
-        _layoutHeight: number;
         featuresMap: Map<any, number>;
         _rowHeight: number;
-        _rows: any[];
         getOffset(): number;
     }
 }
