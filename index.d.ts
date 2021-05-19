@@ -110,3 +110,34 @@ declare module 'protvista-feature-adapter/src/evidences' {
     }[]
     export default ecoMap;
 }
+declare module 'protvista-feature-adapter/src/BasicHelper' {
+    export function formatTooltip(feature: Feature): string
+    export type Feature = {
+        readonly type: string,
+        readonly category?: 'MOLECULE_PROCESSING' | 'STRUCTURAL' | 'DOMAINS_AND_SITES' | 'MUTAGENESIS' | 'PTM' | 'SEQUENCE_INFORMATION' | 'TOPOLOGY' | 'VARIANTS',
+        readonly cvId?: string,
+        readonly ftId?: string,
+        readonly description?: string,
+        readonly alternativeSequence?: string,
+        readonly begin: string,
+        readonly end: string,
+        readonly molecule?: string,
+        readonly xrefs?: DbReferenceObject[],
+        readonly evidences?: Evidence[]
+        readonly unique?: boolean;
+        readonly matchScore?: number;
+    };
+    export type DbReferenceObject = {
+        readonly name: string,
+        readonly id: string,
+        readonly url: string,
+        readonly alternativeUrl?: string,
+        readonly reviewed?: boolean,
+        readonly properties?: any
+    };
+    export type Evidence = {
+        readonly code: string,
+        readonly label?: string,
+        readonly source?: DbReferenceObject
+    }
+}
