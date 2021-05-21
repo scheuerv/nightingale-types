@@ -124,8 +124,9 @@ declare module 'protvista-feature-adapter/src/BasicHelper' {
         readonly molecule?: string,
         readonly xrefs?: DbReferenceObject[],
         readonly evidences?: Evidence[]
-        readonly unique?: boolean;
-        readonly matchScore?: number;
+        readonly unique?: boolean,
+        readonly matchScore?: number,
+        readonly color: string
     };
     export type DbReferenceObject = {
         readonly name: string,
