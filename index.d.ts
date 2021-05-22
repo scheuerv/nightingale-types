@@ -114,7 +114,7 @@ declare module 'protvista-feature-adapter/src/BasicHelper' {
     export function formatTooltip(feature: Feature): string
     export type Feature = {
         readonly type: string,
-        readonly category?: 'MOLECULE_PROCESSING' | 'STRUCTURAL' | 'DOMAINS_AND_SITES' | 'MUTAGENESIS' | 'PTM' | 'SEQUENCE_INFORMATION' | 'TOPOLOGY' | 'VARIANTS',
+        readonly category?: string,
         readonly cvId?: string,
         readonly ftId?: string,
         readonly description?: string,
@@ -126,12 +126,12 @@ declare module 'protvista-feature-adapter/src/BasicHelper' {
         readonly evidences?: Evidence[]
         readonly unique?: boolean,
         readonly matchScore?: number,
-        readonly color: string
+        readonly color?: string
     };
     export type DbReferenceObject = {
         readonly name: string,
         readonly id: string,
-        readonly url: string,
+        readonly url?: string,
         readonly alternativeUrl?: string,
         readonly reviewed?: boolean,
         readonly properties?: any
