@@ -165,25 +165,17 @@ declare module 'protvista-variation-adapter/src/variants' {
         alternativeSequence?: AminoAcid;
         begin: string;
         end: string;
-        xrefs: Xref[];
-        cytogeneticBand: string;
-        genomicLocation: string;
-        locations: Location[];
-        codon?: string;
-        consequenceType: ConsequenceType;
+        xrefs?: Xref[];
+        consequenceType?: ConsequenceType;
         wildType: AminoAcid;
         mutatedType?: AminoAcid;
         predictions?: Prediction[];
-        somaticStatus: number;
-        sourceType: SourceType;
-        descriptions?: Description[];
-        clinicalSignificances?: ClinicalSignificance[];
+        sourceType?: SourceType;
         association?: Association[];
-        populationFrequencies?: PopulationFrequency[];
         evidences?: Evidence[];
         ftId?: string;
     };
-    
+
     export enum AminoAcid {
         A = "A",
         C = "C",
