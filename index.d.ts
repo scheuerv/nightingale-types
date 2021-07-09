@@ -1,18 +1,16 @@
-
-declare module 'protvista-manager' {
+declare module "protvista-manager" {
     export default class ProtvistaManager extends HTMLElement {
         set highlight(highlight: string);
         applyAttributes(): void;
     }
 }
 
-declare module 'protvista-sequence' {
+declare module "protvista-sequence" {
     import ProtvistaZoomable from "protvista-zoomable";
-    export default class ProtvistaSequence extends ProtvistaZoomable {
-    }
+    export default class ProtvistaSequence extends ProtvistaZoomable {}
 }
 
-declare module 'protvista-zoomable' {
+declare module "protvista-zoomable" {
     import { ZoomBehavior } from "d3";
     export default class ProtvistaZoomable extends HTMLElement {
         constructor();
@@ -23,7 +21,7 @@ declare module 'protvista-zoomable' {
     }
 }
 
-declare module 'protvista-variation' {
+declare module "protvista-variation" {
     import ProtvistaTrack from "protvista-track";
     import { Variant } from "protvista-variation-adapter/dist/es/variants";
 
@@ -34,16 +32,18 @@ declare module 'protvista-variation' {
     }
 }
 
-declare module 'protvista-variation-graph' {
+declare module "protvista-variation-graph" {
     import ProtvistaTrack from "protvista-track";
     export default class ProtvistaVariationGraph extends ProtvistaTrack {
-        _totalsArray: { total: Uint8ClampedArray, diseaseTotal: Uint8ClampedArray }
+        _totalsArray: {
+            total: Uint8ClampedArray;
+            diseaseTotal: Uint8ClampedArray;
+        };
         _applyFilters(): void;
     }
 }
 
-
-declare module 'protvista-track' {
+declare module "protvista-track" {
     import ProtvistaZoomable from "protvista-zoomable";
     import DefaultLayout from "protvista-track/src/DefaultLayout";
     import NonOverlappingLayout from "protvista-track/src/NonOverlappingLayout";
@@ -58,27 +58,34 @@ declare module 'protvista-track' {
     }
 }
 
-declare module 'protvista-track/src/config' {
-    const config: Record<string, {
-        name: string;
-        label: string;
-        tooltip: string;
-        shape: string;
-        color: string;
-    }>;
+declare module "protvista-track/src/config" {
+    const config: Record<
+        string,
+        {
+            name: string;
+            label: string;
+            tooltip: string;
+            shape: string;
+            color: string;
+        }
+    >;
 }
 
-declare module 'protvista-track/src/DefaultLayout' {
+declare module "protvista-track/src/DefaultLayout" {
     export default class DefaultLayout {
         _padding: number;
-        constructor(options: { layoutHeight: number, padding?: number, minHeight?: number });
+        constructor(options: {
+            layoutHeight: number;
+            padding?: number;
+            minHeight?: number;
+        });
         init(features: any): void;
         getFeatureYPos(): number;
         getFeatureHeight(): number;
     }
 }
 
-declare module 'protvista-track/src/NonOverlappingLayout' {
+declare module "protvista-track/src/NonOverlappingLayout" {
     import DefaultLayout from "protvista-track/src/DefaultLayout";
     export default class NonOverlappingLayout extends DefaultLayout {
         featuresMap: Map<any, number>;
@@ -87,13 +94,12 @@ declare module 'protvista-track/src/NonOverlappingLayout' {
     }
 }
 
-declare module 'protvista-tooltip' {
+declare module "protvista-tooltip" {
     import { LitElement } from "lit-element";
-    export default class ProtvistaTooltip extends LitElement {
-    }
+    export default class ProtvistaTooltip extends LitElement {}
 }
 
-declare module 'protvista-navigation' {
+declare module "protvista-navigation" {
     export default class ProtvistaNavigation extends HTMLElement {
         _displaystart: string;
         _displayend: string;
@@ -102,7 +108,7 @@ declare module 'protvista-navigation' {
     }
 }
 
-declare module 'protvista-filter' {
+declare module "protvista-filter" {
     import { LitElement, CSSResultOrNative, CSSResultArray } from "lit-element";
     import { TemplateResult } from "lit-html";
     export default class ProtvistaFilter extends LitElement {
@@ -115,46 +121,13 @@ declare module 'protvista-filter' {
     }
 }
 
-declare module 'protvista-feature-adapter/src/evidences' {
+declare module "protvista-feature-adapter/src/evidences" {
     export const ecoMap: {
         name: string;
         description: string;
         shortDescription: string;
         acronym: string;
         isManual?: boolean;
-    }[]
+    }[];
     export default ecoMap;
-}
-
-declare module 'protvista-feature-adapter/src/BasicHelper' {
-    export function formatTooltip(feature: Feature): string;
-    export type Feature = {
-        readonly type: string,
-        readonly category?: string,
-        readonly cvId?: string,
-        readonly ftId?: string,
-        readonly description?: string,
-        readonly alternativeSequence?: string,
-        readonly begin: string,
-        readonly end: string,
-        readonly molecule?: string,
-        readonly xrefs?: DbReferenceObject[],
-        readonly evidences?: Evidence[]
-        readonly unique?: boolean,
-        readonly matchScore?: number,
-        readonly color?: string
-    };
-    export type DbReferenceObject = {
-        readonly name: string,
-        readonly id: string,
-        readonly url?: string,
-        readonly alternativeUrl?: string,
-        readonly reviewed?: boolean,
-        readonly properties?: any
-    };
-    export type Evidence = {
-        readonly code: string,
-        readonly label?: string,
-        readonly source?: DbReferenceObject
-    }
 }
