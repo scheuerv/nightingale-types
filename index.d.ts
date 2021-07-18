@@ -96,7 +96,15 @@ declare module "protvista-track/src/NonOverlappingLayout" {
 
 declare module "protvista-tooltip" {
     import { LitElement } from "lit-element";
-    export default class ProtvistaTooltip extends LitElement {}
+    export default class ProtvistaTooltip extends LitElement {
+        visible: boolean;
+        _getPosition(): {
+            x?: number;
+            y?: number;
+            horizontal?: string;
+            vertical?: string;
+        };
+    }
 }
 
 declare module "protvista-navigation" {
