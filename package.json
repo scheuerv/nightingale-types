@@ -1,7 +1,7 @@
 {
   "name": "@types/nightingale",
   "version": "1.0.0",
-  "description": "",
+  "description": "Types definitions for Nightingale library (for use in uniprot-nightingale).",
   "main": "",
   "types": "index.d.ts",
   "scripts": {
@@ -10,8 +10,8 @@
   "files": [
     "index.d.ts"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Veronika Scheuerova",
+  "license": "Apache-2.0",
   "dependencies": {
     "d3": "^5.16.0",
     "lit-element": "^2.4.0",
